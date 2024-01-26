@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import Navigation from "../components/common/Navigation";
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
-  )
-}
+    <main className="bg">
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url('Background_gadgets.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+      <Navigation />
+    </main>
+  );
+};
 
-export default LandingPage
+export default LandingPage;
