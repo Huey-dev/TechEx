@@ -30,6 +30,8 @@ const Navigation = () => {
             TechEx
           </Link>
         </div>
+        {/* search bar  */}
+
         {/* Desktop Navigation */}
         <ul className="list-none sm:flex hidden justify-center items-center flex-1">
           {navLinks.map((nav, index) => (
@@ -86,6 +88,13 @@ const Navigation = () => {
                     <a href={`#${nav.id}`}>{nav.title}</a>
                   </li>
                 ))}
+                {/* Include the Login component in the sidebar */}
+                <Link
+                  to="/signin"
+                  className="rounded-3xl mx-2 mt-4 hover:bg-slate-500 py-2 px-4 transition-all duration-300 ease-in-out bg-slate-400 font-poppins font-medium cursor-pointer text-[16px]"
+                >
+                  Login
+                </Link>
               </ul>
             </div>
           </div>
