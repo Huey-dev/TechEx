@@ -49,7 +49,7 @@ const Navigation = () => {
 
         <div className="flex items-center mr-4">
           {/* Add other navigation items for desktop */}
-          <Link to="" className="text-white ml-4 hidden md:block">
+          <Link to="/signin" className="text-white ml-4 hidden md:block">
             Login
           </Link>
           <Link to="" className="text-white ml-8">
