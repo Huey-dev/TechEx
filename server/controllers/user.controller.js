@@ -1,6 +1,5 @@
-// to get requested data from the model
-export const test = (req, res) => {
-    res.json({
-        message: "Hello world"
-    })
+// user signup 
+export const userSignup = (req, res) => {
+    // this function gets information from browser body 
+   console.log(req.body);
 }
