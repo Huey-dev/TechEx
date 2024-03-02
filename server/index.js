@@ -21,10 +21,11 @@ app.use(express.json())
 const port = 3000;
 
 
-// Use user routes under the path /api/user
+// Use user router
 app.use("/api/userauth", userRouter);
-// create api route and call
+// admin router
 app.use("/api/adminauth", adminRouter);
+// error middleware
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);

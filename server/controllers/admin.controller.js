@@ -1,6 +1,7 @@
 import Admin from "../models/admin.model.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
+import  Jwt  from "jsonwebtoken";
 
 // admin signup
 export const adminSignup = async (req, res, next) => {
@@ -37,3 +38,18 @@ export const adminSignup = async (req, res, next) => {
 };
 
 // admin signin
+export const adminSignin = async (req, res, next) => {
+    // extract admin credential
+    const {email, password} = req.body
+
+    // query db for admin with provided email
+    const validAdmin = await Admin.findOne({discriminator:"admin", email });
+    if (!validAdmin) return next(errorHandler(404, "Admin not found"));
+    
+    // coompare the provided password with hashed password
+    const validPassword = bcryptjs.compareSync(password, validAdmin.password);
+    if (!validPassword) return next(errorHandler(401, "Wrong password"));
+
+    // generate jwt token to get payload data
+    const token = jwt.sign({ id: validAdmin._id }, process.env.JWT_SECRET);
+}
