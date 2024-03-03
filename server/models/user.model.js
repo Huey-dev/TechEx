@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 // create user schema or rules
 const userSchema = new mongoose.Schema(
   {
-    userName: {
+    username: {
       type: String,
       required: true,
       unique: true,
