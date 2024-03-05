@@ -1,7 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  // initialize use navigate
+  const navigate = useNavigate();
+  // track changes for input
+  const [formData, setFormData] = useState({});
+
+  // update form state
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+  console.log(formData);
+  // Submit form
+  const handleSubmit = async (e) => {
+    // prevent default form submission behavior
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (res.status === 200) {
+        console.log("Sign in successful");
+        navigate("/");
+      } else {
+        console.log("Sign in failed");
+      }
+    } catch (error) {
+      console.error("Error signing in:", error);
+    }
+  };
+
   return (
     <section className="bg-gray-50 flex dark:bg-gray-900">
       {/* Image covering the left half */}
@@ -18,15 +56,16 @@ const SignIn = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div>
                 <label
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Your email
+                  email
                 </label>
                 <input
+                  onChange={handleChange}
                   type="email"
                   name="email"
                   id="email"
@@ -43,6 +82,7 @@ const SignIn = () => {
                   Password
                 </label>
                 <input
+                  onChange={handleChange}
                   type="password"
                   name="password"
                   id="password"
