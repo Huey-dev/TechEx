@@ -23,7 +23,7 @@ const Navigation = () => {
   const [active, setActive] = useState("Home");
 
   return (
-    <nav className="bg-transparent sticky top-0 z-50">
+    <nav className=" bg-transparent sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between py-4">
         <div className="flex items-center">
           <Link to="/" className="text-xl ml-4 font-bold text-white">
