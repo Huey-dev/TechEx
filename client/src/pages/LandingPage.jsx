@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Navigation from "../components/common/Navigation";
+
 
 const LandingPage = () => {
   const [isBuyNowHovered, setIsBuyNowHovered] = useState(false);
@@ -9,8 +9,6 @@ const LandingPage = () => {
 
   return (
     <div className="relative">
-      {/* Navigation */}
-      <Navigation className="fixed top-0 left-0 right-0 z-50" />
 
       {/* Main content */}
       <main className="flex items-center justify-center h-screen">
@@ -29,41 +27,43 @@ const LandingPage = () => {
               className="w-full h-full object-cover rounded-lg cursor-pointer"
               style={{ filter: isBuyNowHovered ? "blur(4px)" : "none" }}
             />
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center opacity-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isBuyNowHovered ? 1 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
+            <Link to="/dashboard">
               <motion.div
-                className="text-white text-2xl font-semibold relative"
-                whileHover={{ scaleX: 1.1 }} // Scale effect on hover
+                className="absolute inset-0 flex items-center justify-center opacity-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isBuyNowHovered ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
               >
-                <Link to="/">Buy now</Link>
-                {isBuyNowHovered && (
-                  <svg
-                    width="100%"
-                    height="100%"
-                    viewBox="0 0 200 80" // Adjust viewBox to fit the text
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="absolute bottom-0 left-0"
-                  >
-                    <motion.rect
-                      width="200"
-                      height="80"
-                      rx="40" // Rounded corners
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="4" // Increased stroke width
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0, pathOffset: 1 }}
-                      animate={{ pathLength: 1, pathOffset: 0 }}
-                      transition={{ duration: 0.5 }} // Slower animation
-                    />
-                  </svg>
-                )}
+                <motion.div
+                  className="text-white text-2xl font-semibold relative"
+                  whileHover={{ scaleX: 1.1 }} // Scale effect on hover
+                >
+                  <Link to="/">Buy now</Link>
+                  {isBuyNowHovered && (
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 200 80" // Adjust viewBox to fit the text
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="absolute bottom-0 left-0"
+                    >
+                      <motion.rect
+                        width="200"
+                        height="80"
+                        rx="40" // Rounded corners
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="4" // Increased stroke width
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0, pathOffset: 1 }}
+                        animate={{ pathLength: 1, pathOffset: 0 }}
+                        transition={{ duration: 0.5 }} // Slower animation
+                      />
+                    </svg>
+                  )}
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </Link>
           </motion.div>
 
           {/* Image for "Repair Now" */}
