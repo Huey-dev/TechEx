@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth.route.js";
+import productRouter from "./routes/product.route.js";
 import cookieParser from 'cookie-parser';
 dotenv.config();
 
@@ -25,6 +26,7 @@ const port = 3000;
 
 // Use user router
 app.use("/api/auth", authRouter);
+app.use('/api/product', productRouter);
 
 // error middleware
 app.use((err, req, res, next) => {
